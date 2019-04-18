@@ -42,10 +42,10 @@ const employees = [
 // Ask questions when you don't.
 
 
-function bonusCalculator(employee){
-  for(let i = 0 ; i < employees.length; i++){
-    console.log(employees);
-    percentage(employees[i]);
+function bonusCalculator(employeeArray){
+  for(let i = 0 ; i < employeeArray.length; i++) {
+    let individualEmployee = employeeArray[i];
+    console.log(percentage(individualEmployee));
   }
 }
 
@@ -54,33 +54,58 @@ function bonusCalculator(employee){
 
 function percentage(employee){
   let bonusPercentage = 0;
-  switch (employee.reviewRating){
-     case 3:
-     bonusPercentage = 0.04;
-       break;
-       case 4:
-     bonusPercentage = 0.06;
-       break;
-       case 5:
-     bonusPercentage = 0.10;
-       break;
-       default:
-     bonusPercentage = 0;
-       break;
+
+  switch (employee.reviewRating) {
+    case 3:
+      bonusPercentage = 0.04;
+      break;
+    case 4:
+      bonusPercentage = 0.06;
+      break;
+    case 5:
+      bonusPercentage = 0.10;
+      break;
+    default:
+      bonusPercentage = 0;
+      break;
   }
-  return bonusPercentage;
+
+  let tenureBonus = 0;
+
+  switch (employee.employeeNumber.length){
+    case 4:
+      tenureBonus = 0.05;
+      break;
+    default:
+      tenureBonus = 0;
+      break;
+  }
+
+  let totalBonusPercentage = bonusPercentage + tenureBonus;
+
+  employee.annualSalary = parseInt(employee.annualSalary);
+
+  if (employee.annualSalary > 65000){
+    totalBonusPercentage -= 0.01;
+  }
+
+  if  (totalBonusPercentage < 0){
+    totalBonusPercentage = 0;
+  }
+
+  if (totalBonusPercentage > 0.13) {
+    totalBonusPercentage = 0.13;
+  }
+
+  let bonusCash = employee.annualSalary * totalBonusPercentage;
+  employee.annualSalary = employee.annualSalary + bonusCash;
+
+  return {
+    name: employee.name,
+    bonusPercentage: totalBonusPercentage,
+    totalCompensation: employee.annualSalary,
+    totalBonus: bonusCash,
+  }
 }
- /*et tenureBonus = 0;
-    switch (employee.employeeNumber.length){
-      case 4:
-    tenureBonus = 0.05;
-      break;
-      default:
-    tenureBonus = 0;
-      break;
-    }
 
-    let totalBonusPercentage = bonusPercentage + tenureBonus;
-    return totalBonusPercentage;*/
-
-    console.log(bonusCalculator(employees));
+bonusCalculator(employees);
