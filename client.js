@@ -31,6 +31,7 @@ const employees = [
   }
 ];
 
+
 // YOU SHOULD NOT NEED TO CHANGE ANYTHING ABOVE THIS POINT
 
 // Take small steps! Don't write a for loop and two functions that do all of the calculations right away.
@@ -40,4 +41,46 @@ const employees = [
 // This is not a race. Everyone on your team should understand what is happening.
 // Ask questions when you don't.
 
-console.log( employees );
+
+function bonusCalculator(employee){
+  for(let i = 0 ; i < employees.length; i++){
+    console.log(employees);
+    percentage(employees[i]);
+  }
+}
+
+
+//---------------------------------------\\
+
+function percentage(employee){
+  let bonusPercentage = 0;
+  switch (employee.reviewRating){
+     case 3:
+     bonusPercentage = 0.04;
+       break;
+       case 4:
+     bonusPercentage = 0.06;
+       break;
+       case 5:
+     bonusPercentage = 0.10;
+       break;
+       default:
+     bonusPercentage = 0;
+       break;
+  }
+  return bonusPercentage;
+}
+ /*et tenureBonus = 0;
+    switch (employee.employeeNumber.length){
+      case 4:
+    tenureBonus = 0.05;
+      break;
+      default:
+    tenureBonus = 0;
+      break;
+    }
+
+    let totalBonusPercentage = bonusPercentage + tenureBonus;
+    return totalBonusPercentage;*/
+
+    console.log(bonusCalculator(employees));
