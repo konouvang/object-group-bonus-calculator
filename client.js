@@ -1,3 +1,17 @@
+$(document).ready(function () {
+  console.log('just checking myself')
+
+  for (let i = 0; i < newEmployeeArray.length; i++) {
+    $('.container').append('<div></div>');
+    let newDiv = $('.container').children().last();
+    // let person = newEmployeeArray[i];
+    newDiv.append('<p>' + newEmployeeArray[i].name + '</p>');
+    newDiv.append('<p>' + newEmployeeArray[i].bonusPercentage + '</p>');
+    newDiv.append('<p>' + newEmployeeArray[i].totalCompensation + '</p>');
+
+  }
+
+});
 const employees = [
   {
     name: 'Atticus',
@@ -42,11 +56,22 @@ const employees = [
 // Ask questions when you don't.
 
 
+let newEmployeeArray = [];
+
 function bonusCalculator(employeeArray){
+
+  
+
   for(let i = 0 ; i < employeeArray.length; i++) {
     let individualEmployee = employeeArray[i];
-    console.log(percentage(individualEmployee));
+    // console.log(percentage(individualEmployee));
+    newEmployeeArray.push(percentage(individualEmployee));
+    
+    
   }
+  console.log(newEmployeeArray);
+
+
 }
 
 
